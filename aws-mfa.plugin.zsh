@@ -1,4 +1,4 @@
-mfa_func() {
+__mfa_func() {
   AWS_CLI=`which aws`
 
   if [ $? -ne 0 ]; then
@@ -40,11 +40,11 @@ mfa_func() {
     | awk '{printf("export AWS_ACCESS_KEY_ID=\"%s\"\nexport AWS_SECRET_ACCESS_KEY=\"%s\"\nexport AWS_SESSION_TOKEN=\"%s\"\nexport AWS_SECURITY_TOKEN=\"%s\"\n",$2,$4,$5,$5)}' | tee ~/.token_file
 }
 
-setToken() {
+__setToken() {
     #do things with parameters like $1 such as
-    mfa_func $1 $2
+    __mfa_func $1 $2
     source ~/.token_file
     echo "Your creds have been set in your env."
 }
 
-alias mfa=setToken
+alias mfa="__setToken"
