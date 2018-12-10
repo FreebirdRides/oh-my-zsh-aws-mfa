@@ -53,7 +53,7 @@ main() {
       exit 1
     fi
   fi
-  env git clone --depth=1 https://github.com/FreebirdRides/oh-my-zsh-aws-mfa.git "$ZSH/custom/aws-mfa" || {
+  env git clone --depth=1 https://github.com/FreebirdRides/oh-my-zsh-aws-mfa.git "$ZSH/custom/plugins/aws-mfa" || {
     printf "Error: git clone of oh-my-zsh repo failed\n"
     exit 1
   }

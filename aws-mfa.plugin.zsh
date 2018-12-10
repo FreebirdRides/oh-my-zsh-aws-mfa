@@ -18,8 +18,8 @@ mfa_func() {
   fi
 
   echo "Reading config..."
-  if [ -r ~/.mfa.cfg ]; then
-    . ~/.mfa.cfg
+  if [ -r ~/mfa.cfg ]; then
+    . ~/mfa.cfg
   else
     echo "No config found.  Please create your mfa.cfg.  See README.txt for more info."
     exit 2
@@ -39,3 +39,12 @@ mfa_func() {
     --serial-number $ARN_OF_MFA --token-code $MFA_TOKEN_CODE --output text \
     | awk '{printf("export AWS_ACCESS_KEY_ID=\"%s\"\nexport AWS_SECRET_ACCESS_KEY=\"%s\"\nexport AWS_SESSION_TOKEN=\"%s\"\nexport AWS_SECURITY_TOKEN=\"%s\"\n",$2,$4,$5,$5)}' | tee ~/.token_file
 }
+
+setToken() {
+    #do things with parameters like $1 such as
+    mfa_func $1 $2
+    source ~/.token_file
+    echo "Your creds have been set in your env."
+}
+
+alias mfa=setToken
