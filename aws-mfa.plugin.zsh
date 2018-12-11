@@ -18,8 +18,8 @@ __mfa_func() {
   fi
 
   echo "Reading config..."
-  if [ -r ~/mfa.cfg ]; then
-    . ~/mfa.cfg
+  if [ -r ~/.mfa.cfg ]; then
+    . ~/.mfa.cfg
   else
     echo "No config found.  Please create your mfa.cfg.  See README.txt for more info."
     exit 2
